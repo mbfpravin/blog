@@ -9,11 +9,13 @@ if(isset($_REQUEST['export']) && $_REQUEST['export'] == 'contact_list'):
      */
     $file_name = 'contactlist_'.date("M_d_Y_H_i").'.csv';
     $field_args = array(
-        'firstname'        => 'NAME',
-        'email'        => 'EMAIL',
-        'telephone'        => 'TELEPHONE',
-        'message'        => 'MESSAGE',
-        'posted_date'       => 'DATE'
+        'userid'        => 'Usid',
+        'postid'        => 'Pstid',
+        'event_name'    => 'Event Name',
+        'name'          => 'Name',
+        'email'        => 'Email',
+        'phone'        => 'Phone',
+        'message'       => 'Message'
     );
 
     
@@ -29,7 +31,7 @@ if(isset($_REQUEST['export']) && $_REQUEST['export'] == 'contact_list'):
     // Write Currency Columns.
     
     // Read from Database.
-    $query = "SELECT * FROM ".$wpdb->prefix."contact ORDER BY `posted_date` desc";
+    $query = "SELECT * FROM ".$wpdb->prefix."event ORDER BY asc";
     $sql = $wpdb->get_results($query);
     $sql_count = count($sql);
     
@@ -62,18 +64,20 @@ class Link_Contact_List_Table extends WP_List_Table
     function get_columns()
     {
         return $columns= array(
-        'col_firstname'=>__('Name'),
+        'col_userid'=>__('Usid'),
+        'col_postid'=>__('Pstid'),
+        'col_event_name'=>__('Event name'),
+        'col_name'=>__('Name'),
         'col_email'=>__('Email'),
-        'col_telephone'=>__('Telephone Number'),
-        'col_message'=>__('Message'),
-        'col_posted_date'=>__('Date')
+        'col_phone'=>__('Telephone Number'),
+        'col_message'=>__('Message')
         );
     }
     function prepare_items()
     {
         global $wpdb, $_wp_column_headers;
         $screen = get_current_screen();
-        $query = "SELECT * FROM ". $wpdb->prefix ."contact";
+        $query = "SELECT * FROM ". $wpdb->prefix ."event";
 
         /* -- Ordering parameters -- */
         //Parameters that are going to be used to order the result
@@ -136,9 +140,18 @@ class Link_Contact_List_Table extends WP_List_Table
                     
                     //Display the cell
                     switch ( $column_name ) {
+                        case "col_userid": 
+                            echo '<td '.$attributes.'>'.stripslashes($rec->userid).'</td>';
+                        break;
+                        case "col_postid": 
+                            echo '<td '.$attributes.'>'.stripslashes($rec->postid).'</td>';
+                        break;
+                        case "col_event_name": 
+                            echo '<td '.$attributes.'>'.stripslashes($rec->event_name).'</td>';
+                        break;
                         
                         case "col_name": 
-                            echo '<td '.$attributes.'>'.stripslashes($rec->firstname).'</td>';
+                            echo '<td '.$attributes.'>'.stripslashes($rec->name).'</td>';
                         break;
 
                         case "col_email": 
@@ -146,15 +159,11 @@ class Link_Contact_List_Table extends WP_List_Table
                         break;
 
                         case "col_telephone": 
-                            echo '<td '.$attributes.'>'.stripslashes($rec->telephone).'</td>';
+                            echo '<td '.$attributes.'>'.stripslashes($rec->phone).'</td>';
                         break;
 
                         case "col_message": 
                             echo '<td '.$attributes.'>'.stripslashes($rec->message).'</td>';
-                        break;
-
-                        case "col_posted_date": 
-                            echo '<td '.$attributes.'>'.$rec->posted_date.'</td>';
                         break;
                     }
                 }

@@ -35,8 +35,6 @@ function get_current_user_role() {
               </div>
               <div class="col-md-9">
                 <ul class="list-inline profile-menu">
-                  
-                  <li><a href="timeline-album.html">Album</a></li>
                   <li><a href="<?php echo get_bloginfo('template_url'); ?>/dashboard">Dashboard</a></li>
                 </ul>
                 
@@ -86,7 +84,6 @@ function get_current_user_role() {
                       <div class="col-sm-3">
                         <div class="toggle-switch">
                           <label class="switch">
-                            <input type="checkbox" id="deleted" checked>
                             <span class="slider round"></span>
                           </label>
                         </div>
@@ -98,8 +95,47 @@ function get_current_user_role() {
               </div>
             </div>
             <div class="col-md-2 static">
-            
-         
+            </div>
+          </div>
+             <div class="row">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-7">
+              <div class="edit-profile-container">
+                <div class="block-title">
+                  <h4 class="grey"><i class="icon ios-heart"></i>Events History</h4>
+                  <div class="line"></div>
+                  <div class="line"></div>
+                </div>
+                <div class="edit-block">
+                  <?php  $user = wp_get_current_user(); 
+                   $events= $wpdb->get_results("SELECT * FROM  ".$wpdb->prefix."event WHERE userid=".$user->data->ID);
+                    foreach ($events as $event) {
+                      $postData1 = get_post($event->postid);
+                  ?>
+                  <div class="line"></div>
+                  <div class="settings-block">
+                    <div class="row">
+                      <div class="col-sm-9">
+                        <div class="switch-description">
+                          <div><strong><?php echo $postData1->post_title; ?></strong></div>
+                          <!-- <p><?php echo $postData1->post_excerpt; ?></p> -->
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="toggle-switch">
+                          <label class="switch">
+                            <span class="slider round"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <?php } ?>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2 static">
             </div>
           </div>
         </div>

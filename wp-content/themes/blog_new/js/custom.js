@@ -30,14 +30,6 @@ jQuery(document).ready(function($){
 		$('.apsl-registration-form').hide();
         $('.apsl-registration-wrapper').removeClass('apsl-login-registration-form');
     });
-});
-
-// $(function() {
-//   $(".heart").on("click", function() {
-//     $(this).toggleClass("is-active");
-//   });
-// });
-
 $('.heart').on('click',function(event){
 
 var usr=$(this).data('user');
@@ -58,24 +50,37 @@ var val = $(this);
       return true;
   });
 
-$('.fav_list_add').on('click',function(event){
+});
 
-var usr=$(this).data('user');
-var post=$(this).data('postid');
-var val = $(this);
+// $(function() {
+//   $(".heart").on("click", function() {
+//     $(this).toggleClass("is-active");
+//   });
+// });
+
+
+jQuery('#book').on('click',function(e){
+  e.preventDefault();
+var usr=jQuery(this).data('user');
+var post=jQuery(this).data('postid');
+var eventname = jQuery('#ename').val();
+var Name =jQuery('#contact-name').val();
+var email =jQuery('#contact-email').val();
+var phone = jQuery('#contact-phone').val();
+var mesg =jQuery('#form-message').val();
+var val = jQuery(this);
     $.ajax({
-            url: templateUri + '/ajax/favourite.php',
+            url: templateUri + '/ajax/ajax-submit.php',
             type: "POST",
-            data:{usrid: usr, postid: post},
+            data:{usrid: usr,postid: post,event_name: eventname,name:Name,email:email,phone :phone,message:mesg},
             success: function (data) {
-             if(data ==1) {
-               val.html("Remove favourite");
-              }else{
-              	val.html("Add to favourite");
-              }
+             // if(data ==1) {
+             //   val.addClass("is-active");
+             //  }else{
+             //    val.removeClass("is-active");
+             //  }
+             alert('gg');
             }
         });
-      return true;
+      // return true;
   });
-
-

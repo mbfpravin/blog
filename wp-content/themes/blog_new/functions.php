@@ -137,7 +137,6 @@
 	    $content=shortcode_empty_paragraph_fix_tag($content);
 	    return ' <div class="col-8 center-block">' .do_shortcode($content).'
 		            </div>';
-
 	}
 	add_shortcode('col_8_center', 'col_8_center');
 
@@ -145,7 +144,6 @@
     	$content = preg_replace('#^<\/p>|<p>$#', '', $content);
 	    $content=shortcode_empty_paragraph_fix_tag($content);
 	    return ' <div class="component-accordion">' .do_shortcode($content).'</div>';
-
 	}
 	add_shortcode('accordion_container', 'accordion_container');
 
@@ -402,4 +400,17 @@ function myplugin_register_form($user) {
   add_action('user_register', 'send_welcome_email_to_new_user');
   // THE ONLY DIFFERENCE IS THIS LINE
 
+/*
+    *Instagram feeds 
+    */
+    function connie_instagram_api_curl_connect( $api_url ){
+    $connection_c = curl_init(); // initializing
+    curl_setopt( $connection_c, CURLOPT_URL, $api_url ); // API URL to connect
+    curl_setopt( $connection_c, CURLOPT_RETURNTRANSFER, 1 ); // return the result, do not print
+    curl_setopt( $connection_c, CURLOPT_TIMEOUT, 20 );
+    $json_return = curl_exec( $connection_c ); // connect and get json data
+    
+    curl_close( $connection_c ); // close connection
+    return json_decode( $json_return ); // decode and return
+}
 ?>

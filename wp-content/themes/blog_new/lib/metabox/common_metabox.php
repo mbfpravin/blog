@@ -4,7 +4,7 @@ add_action('admin_menu', 'common_metabox_options');
 function common_metabox_options() {
 
     /*Give your custom posttypes name*/
-    $types = array( 'post', 'page'); 
+    $types = array( 'post', 'Events','page'); 
     foreach( $types as $type ) {
         add_meta_box('common_metabox_options', 'Post settings', 'common_metabox_options_design', $type);
     }

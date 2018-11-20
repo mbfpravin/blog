@@ -1,10 +1,4 @@
-<!-- Footer
-================================================= -->
-<footer id="footer">
-  <div class="copyright">
-    <p>MadeByFire Team © 2016. All rights reserved</p>
-  </div>
-</footer>
+
 <!-- Scripts
 ================================================= -->
 <script src="<?php echo get_bloginfo('template_url'); ?>/app/js/jquery-3.1.1.min.js"></script>

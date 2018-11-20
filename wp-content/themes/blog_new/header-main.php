@@ -49,9 +49,10 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right main-menu">
-              <li class="dropdown"><a class="txt2" href="<?php echo home_url(); ?>/favourite">Favourites</a></li>
-              <li class="dropdown"><a class="txt2" href="<?php echo home_url(); ?>/change-password">Change Password</a></li>
-              <li class="dropdown"><a <?php if($slug =="logout") { ?> class="active" <?php } ?> href="<?php echo wp_logout_url( home_url() ); ?>">Logout</a></li>
+              <li class="dropdown"><a class="txt2" href="<?php echo home_url(); ?>/events">Events</a></li>
+              <li class="dropdown"><a class="txt2" href="<?php echo home_url(); ?>/favourite">Profile</a></li>
+<!--               <li class="dropdown"><a class="txt2" href="<?php echo home_url(); ?>/change-password">Change Password</a></li>
+ -->              <li class="dropdown"><a <?php if($slug =="logout") { ?> class="active" <?php } ?> href="<?php echo wp_logout_url( home_url() ); ?>">Logout</a></li>
             </ul>
             <form class="navbar-form navbar-right hidden-sm">
               <div class="form-group">
